@@ -1,10 +1,11 @@
 # Setup (configure globals)
 from p_pack import globals as g
 
-g.num_steps                 = 1_000
+g.num_steps                 = 100
 g.training_rate             = 0.1
-g.save_points               = [(i + 1) * 250 for i in range(4)]
-g.reupload_freq             = 5         # reupload on layer 5
+g.save_points               = [g.num_steps]
+g.reupload_freq             = 4         # reupload on layer 5
+g.input_positions           = [4, 5]
 g.shuffle_type              = 1         # no shuffling
 g.use_extra_features        = False
 g.total_features            = 10        # Including reupload
@@ -15,7 +16,8 @@ g.p_and_q_encoding          = True
 g.p_suc_inputs              = 1.0
 g.use_symmetry_parity       = False
 g.pos_allowed               = [1 for _ in range(g.num_modes_circ)]
-g.input_config              = (1, 1)
+g.input_config              = g.input_config_maker('full', g.num_modes_circ, g.p_suc_inputs)
+g.aim                       = 10
 g.loss_function             = 0
 g.loss_metric               = 0
 g.coherence                 = 1.0

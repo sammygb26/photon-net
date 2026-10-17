@@ -88,7 +88,7 @@ g.shuffle_key = g.jax.random.PRNGKey(51)
 # Key used when sampling new input photon positions each optimisation step.
 g.position_key = g.jax.random.PRNGKey(7)
 # If ``True`` a fresh set of input positions is sampled every update.
-g.position_sampling: bool = False
+g.position_sampling = False
 # Optional mask restricting which input modes may be chosen when
 # ``position_sampling`` is enabled.  Each entry corresponds to a circuit
 # mode; ``1`` marks the mode as eligible while ``0`` forbids it.  By
@@ -100,7 +100,7 @@ g.class_labels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 g.use_binary_labels = False
 g.num_classes = len(g.class_labels)
 
-g.use_input_superposition: bool = False
+g.use_input_superposition = False
 
 g.max_photons = 3 # maximum photon number for building probability calculating functions
 
