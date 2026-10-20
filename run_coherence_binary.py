@@ -1,7 +1,7 @@
 # Setup (configure globals)
 from p_pack import globals as g
 
-g.num_steps                 = 1000
+g.num_steps                 = 1
 g.training_rate             = 0.1
 g.save_points               = [g.num_steps]
 g.reupload_freq             = 4         # reupload on layer 5
@@ -23,7 +23,8 @@ g.loss_metric               = 0
 g.coherence                 = 1.0
 g.freeze_phases             = False     # Unfree circuit (training)
 g.readout_type              = 1         # Trained linear readout        
-g.batch_mode                = 'full'    # Use mini-batches
+g.batch_mode                = 'mini'    # Use mini-batches
+g.mini_batch_size           = 512       # Mini-batch size
 g.master_key                = g.jax.random.PRNGKey(0)
 g.phase_key                 = g.jax.random.PRNGKey(6)
 g.shuffle_key               = g.jax.random.PRNGKey(51)
@@ -50,14 +51,14 @@ def rebuild_modules():
     for mod in (c, m, l, o, t, u):
         importlib.reload(mod)
 
-def setup_run(coherence, repetition):
+def setup_run(coherence, repetition=0):
     g.coherence = coherence
 
     g.master_key  = g.jax.random.PRNGKey(repetition)
     g.phase_key   = g.jax.random.PRNGKey(repetition)
     g.shuffle_key = g.jax.random.PRNGKey(repetition)
 
-def execute_run(repetition):
+def execute_run():
     # Folders used
     log_file    = 'data_log'
 
@@ -66,14 +67,12 @@ def execute_run(repetition):
     global_name = name + '_global'
 
     coherence_folder  = name
-    repetition_folder = f'r{repetition}'
 
     output_folder = str(
         pathlib.Path.home()
         /'work'
         /'coherence_binary'
         /coherence_folder
-        /repetition_folder
     )
 
     # Load data
@@ -141,15 +140,10 @@ if __name__ == "__main__":
     print('Starting coherence_binary')
     for coherence in [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]:
         print(f'Starting coherence={coherence:.02f}')
-        for repetition in range(10):
-            print(f'Run {repetition}')
 
-            # Run code 
-            setup_run(
-                coherence=coherence, 
-                repetition=repetition)
-            rebuild_modules()
-            execute_run(
-                repetition=repetition)
+        # Run code 
+        setup_run(coherence=coherence)
+        rebuild_modules()
+        execute_run()
 
         print(f'Completed coherence={coherence:.02f}')

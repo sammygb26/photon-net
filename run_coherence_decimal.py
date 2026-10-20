@@ -50,14 +50,14 @@ def rebuild_modules():
     for mod in (c, m, l, o, t, u):
         importlib.reload(mod)
 
-def setup_run(coherence, repetition):
+def setup_run(coherence, repetition=0):
     g.coherence = coherence
 
     g.master_key  = g.jax.random.PRNGKey(repetition)
     g.phase_key   = g.jax.random.PRNGKey(repetition)
     g.shuffle_key = g.jax.random.PRNGKey(repetition)
 
-def execute_run(repetition):
+def execute_run():
     # Folders used
     log_file    = 'data_log'
 
@@ -66,14 +66,12 @@ def execute_run(repetition):
     global_name = name + '_global'
 
     coherence_folder  = name
-    repetition_folder = f'r{repetition}'
 
     output_folder = str(
         pathlib.Path.home()
         /'work'
         /'coherence_decimal'
         /coherence_folder
-        /repetition_folder
     )
 
     # Load data
@@ -141,15 +139,10 @@ if __name__ == "__main__":
     print('Starting coherence_decimal')
     for coherence in [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]:
         print(f'Starting coherence={coherence:.02f}')
-        for repetition in range(10):
-            print(f'Run {repetition}')
 
-            # Run code 
-            setup_run(
-                coherence=coherence, 
-                repetition=repetition)
-            rebuild_modules()
-            execute_run(
-                repetition=repetition)
+        # Run code 
+        setup_run(coherence=coherence)
+        rebuild_modules()
+        execute_run()
 
         print(f'Completed coherence={coherence:.02f}')
