@@ -1,7 +1,7 @@
 # Setup (configure globals)
 from p_pack import globals as g
 
-g.num_steps                 = 1000
+g.num_steps                 = 1
 g.training_rate             = 0.1
 g.save_points               = [g.num_steps]
 g.reupload_freq             = 4         # reupload on layer 5
@@ -24,7 +24,7 @@ g.coherence                 = 1.0
 g.freeze_phases             = False     # Unfree circuit (training)
 g.readout_type              = 1         # Trained linear readout        
 g.batch_mode                = 'mini'    # Use mini-batches
-g.mini_batch_size           = 512       # Mini-batch-size
+g.mini_batch_size           = 512       # Mini-batch size
 g.master_key                = g.jax.random.PRNGKey(0)
 g.phase_key                 = g.jax.random.PRNGKey(6)
 g.shuffle_key               = g.jax.random.PRNGKey(51)
@@ -71,7 +71,7 @@ def execute_run():
     output_folder = str(
         pathlib.Path.home()
         /'work'
-        /'coherence_decimal'
+        /'c059-sweep-c10'
         /coherence_folder
     )
 

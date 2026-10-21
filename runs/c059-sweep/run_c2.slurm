@@ -23,4 +23,4 @@ cd $HOME/photon-net
 
 source venv2/bin/activate
 
-python ./runs/c059-sweep/run_c2.py
+python -m runs.c059-sweep.run_c2
