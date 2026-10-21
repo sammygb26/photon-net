@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=coherence_decimal
+#SBATCH --job-name=coherence_decimal_456
 #SBATCH --time=24:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1

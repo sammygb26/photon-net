@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=coherence_binary
+#SBATCH --job-name=coh-p-2
 #SBATCH --time=24:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
