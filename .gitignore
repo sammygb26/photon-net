@@ -1,4 +1,5 @@
 venv2/**
 **/__pycache__/**
 work/**
-data_log
+**/data_log
+logs/**
