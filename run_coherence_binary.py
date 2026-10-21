@@ -1,7 +1,7 @@
 # Setup (configure globals)
 from p_pack import globals as g
 
-g.num_steps                 = 1
+g.num_steps                 = 1000
 g.training_rate             = 0.1
 g.save_points               = [g.num_steps]
 g.reupload_freq             = 4         # reupload on layer 5
