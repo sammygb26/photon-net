@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=coherence_binary
+#SBATCH --job-name=coherence_decimal
 #SBATCH --time=24:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -23,4 +23,4 @@ cd $HOME/photon-net
 
 source venv2/bin/activate
 
-python run_coherence_binary.py
+python ./runs/c059-sweep/run_c10.py
