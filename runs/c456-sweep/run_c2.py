@@ -62,7 +62,7 @@ def execute_run():
     # Folders used
     log_file    = 'data_log'
 
-    name = f'c={g.coherence:.02f}'
+    name = f'c456_bin_coh={g.coherence:.02f}'
     data_name   = name + '_data'
     global_name = name + '_global'
 
@@ -71,7 +71,8 @@ def execute_run():
     output_folder = str(
         pathlib.Path.home()
         /'work'
-        /'coherence_binary'
+        /'c456-sweep'
+        /'binary'
         /coherence_folder
     )
 
