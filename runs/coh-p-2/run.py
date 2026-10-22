@@ -58,7 +58,7 @@ def setup_run(coherence, photon_number, repetition=0):
     # Photon-number
     g.input_positions = list(range(photon_number))
     g.input_config    = g.input_config_maker(g.input_positions, g.num_modes_circ, g.p_suc_inputs)
-    g.aim             = 3
+    g.aim             = photon_number
 
 
     # Repetition
